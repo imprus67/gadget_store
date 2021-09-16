@@ -33,7 +33,8 @@ const OrderDevice = sequelize.define('order_device', {
     id: {
         type: DataTypes.INTEGER, 
         primaryKey: true, 
-        autoIncrement: true}
+        autoIncrement: true
+    }
 });
 
 const Device = sequelize.define('device', {
