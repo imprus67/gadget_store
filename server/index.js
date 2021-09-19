@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const helmet = require('helmet');
 const sequelize = require('./db');
 const models = require('./models/models');
 const cors = require('cors');
@@ -11,6 +12,7 @@ const path = require('path');
 
 const app = express();
 
+app.use(helmet());
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.resolve(__dirname, 'static')));
