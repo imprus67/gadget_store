@@ -1,0 +1,10 @@
+.DeviceListWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 40px;
+  row-gap: 55px;
+  column-gap: 65px;
+  flex-direction: row;
+  align-content: stretch;
+  justify-content: flex-start;
+}

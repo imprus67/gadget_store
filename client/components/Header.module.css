@@ -24,7 +24,6 @@
   transition: 0.2s;
 }
 .wrapperHeader > ul li:hover {
-  font-size: 17px;
   text-shadow: 2px 1px 7px #e4e4e4;
   transition: 0.2s;
 }
@@ -70,9 +69,20 @@
   text-decoration: none;
   margin-right: 25px;
 }
+.signInButton:hover {
+  text-shadow: 2px -1px 4px;
+}
 
 .loginButton {
   background-color: transparent;
   color: #fff;
   border: none;
+  cursor: pointer;
+
+  height: 30px;
+}
+
+.loginButton:hover {
+  cursor: pointer;
+  text-shadow: 2px -1px 4px;
 }

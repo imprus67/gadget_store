@@ -1,14 +1,14 @@
 import '../styles/globals.css';
 import MainLayout from './../layouts/MainLayout';
-import { AppWrapper } from '../context/state';
+import ContextWrapper from '../components/ContextWrapper';
 
 function MyApp({ Component, pageProps }) {
   return (
-    <AppWrapper>
+    <ContextWrapper>
       <MainLayout>
         <Component {...pageProps} />
       </MainLayout>
-    </AppWrapper>
+    </ContextWrapper>
   )
 }
 

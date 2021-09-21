@@ -1,0 +1,42 @@
+.MainContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.Brands {
+  display: flex;
+  justify-content: space-between;
+  align-content: stretch;
+  flex-wrap: wrap;
+  flex-direction: row;
+  color: white;
+  text-align: center;
+  line-height: 28px;
+  min-height: 70px;
+  row-gap: 10px;
+}
+
+.BrandItem {
+  width: 120px;
+  height: 28px;
+  background: #1a3d73;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.BrandItemActive {
+  width: 120px;
+  height: 28px;
+  background: #cb3435;
+  border-radius: 20px;
+  color: black;
+  cursor: pointer;
+}
+
+.BrandItem:hover {
+  /*     */
+  transform: scale(1.05);
+  transition: 0.2s;
+  background: #cb3435;
+  color: black;
+}

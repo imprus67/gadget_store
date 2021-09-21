@@ -1,0 +1,55 @@
+.DeviceWrapper {
+  display: flex;
+  max-width: 150px;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.DeviceWrapper img {
+  cursor: pointer;
+}
+
+.DeviceName {
+  text-align: center;
+  padding-top: 10px;
+  font-weight: 500;
+}
+.DevicePrice {
+  color: balck;
+  text-align: center;
+  margin: 5px 0;
+}
+
+.BrandName {
+  color: rgba(0, 0, 0, 0.561);
+}
+
+.Cart {
+  color: white;
+  width: 150px;
+  height: 40px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 5px;
+  border: none;
+  background: #313131;
+  cursor: pointer;
+  margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.Cart img {
+  margin-right: 10px;
+}
+
+.CartSpan {
+  margin-left: 10px;
+}
+
+.CartDiv {
+  color: black;
+}

@@ -4,7 +4,7 @@ const brandController = require('../controllers/brandController');
 const checkRole = require('../middleware/CheckRoleMiddleware');
 
 router.get('/', brandController.getAll);
-router.post('/',checkRole('ADMIN'), brandController.create);
+router.post('/', brandController.create);
 
 
 module.exports = router;

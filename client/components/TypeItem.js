@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import styles from './TypeItem.module.css';
-import { useAppContext } from '../context/state';
+// import { useContext } from 'react';
+// import AuthContext from '../context/AuthContext';
 
 const TypeItem = ({props, setSelectedItem, active}) => {
 
-    const {isAuth} = useAppContext();
-    console.log(isAuth)
-
+    //const {isAuth, setIsAuth} = useContext(AuthContext);
+    
     return (
 
 

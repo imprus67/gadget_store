@@ -41,10 +41,14 @@ const Header = () => {
                 <div className={styles.cartHeader}>
                     <Image src={cartPic} width="40" height="35"/>
                 </div>
-
+                
                 <div className={styles.signHeader}>
+                    <Link href="/auth">
                     <button className={styles.signInButton}>ВХОД</button>
+                    </Link>
+                    <Link href="/signin">
                     <button className={styles.loginButton}>РЕГИСТРАЦИЯ</button>
+                    </Link>
                 </div>
             </div>
         </div>

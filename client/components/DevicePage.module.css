@@ -1,0 +1,96 @@
+.MainWrapper {
+  display: flex;
+  width: 600px;
+  margin: 50px auto 20px auto;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: space-around;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.DeviceWrapper {
+  min-height: 100vh;
+  max-width: 300px;
+}
+
+.h2Wrapper {
+  text-align: center;
+  padding-bottom: 10px;
+  font-family: montserrat;
+  font-size: 28px;
+}
+
+.DescWrapper {
+  color: black;
+  max-width: 300px;
+}
+
+.DescWrapper h2 {
+  padding: 10px 0 20px 0;
+}
+
+.PriceWrapper h3 {
+  text-align: center;
+  font-size: 28px;
+  padding-top: 20px;
+}
+
+.DeviceName {
+  text-align: center;
+  padding-top: 10px;
+  font-weight: 500;
+}
+.DevicePrice {
+  color: balck;
+  text-align: center;
+  margin: 5px 0;
+}
+
+.BrandName {
+  color: rgba(0, 0, 0, 0.561);
+}
+
+.Cart {
+  color: white;
+  width: 150px;
+  height: 40px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 5px;
+  border: none;
+  background: #313131;
+  cursor: pointer;
+  margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto 0 auto;
+  padding: 20px;
+}
+
+.Cart img {
+  margin-right: 10px;
+}
+
+.CartSpan {
+  margin-left: 10px;
+}
+
+.CartDiv {
+  color: black;
+}
+
+.Gray {
+  background-color: rgb(232 232 232);
+  font-size: 18px;
+  padding: 10px;
+}
+
+.Transparent {
+  color: black;
+  font-size: 18px;
+  padding: 10px;
+}

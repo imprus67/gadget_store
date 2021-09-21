@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styles from './Sidebar.module.css';
-import axios from 'axios';
+import MainContext from '../context/MainContext';
 import TypeItem from './TypeItem';
 
 const Sidebar = () => {
 
-    const [types, setTypes] = useState([]);
-    const [selectedItem, setSelectedItem] = useState();
+        const {types,  
+        selectedType, 
+        setSelectedType} = useContext(MainContext);
 
-    useEffect(() => {
-    axios.get(process.env.NEXT_PUBLIC_URL + '/api/type')
-    .then(response => setTypes(() => response.data.types));
+    // useEffect(() => {
+    // axios.get(process.env.NEXT_PUBLIC_URL + '/api/type')
+    // .then(response => setTypes(() => response.data.types));
 
-    }, []);
+    // }, []);
 
-    console.log(selectedItem);
 
     return (
         <div className={styles.sidebarWrapper}>
@@ -24,10 +24,10 @@ const Sidebar = () => {
                     
                     {types.map((category) => 
                     <TypeItem  key={category.id}
-                    active={selectedItem === category.id}
+                    active={selectedType === category.id}
                     props={category}
-                    selectedItem={selectedItem}
-                    setSelectedItem = {setSelectedItem}
+                    selectedType={selectedType}
+                    setSelectedItem = {setSelectedType}
                     />
 
                     )}
@@ -38,16 +38,4 @@ const Sidebar = () => {
 }
 
 export default Sidebar;
-
-
-// export async function getStaticProps(context) {
-    
-//     let types;
-//     axios.get('http://localhost:5000/api/type')
-//     .then(response => types = response.data.types);
-
-//   return {
-//     props: {types}, 
-//   }
-// }
 

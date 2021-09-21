@@ -3,5 +3,6 @@
   grid-template-columns: 33.33% 66.67%;
   max-width: 1200px;
   margin: auto;
-  height: 100px;
+  min-height: 100vh;
+  margin-bottom: 40px;
 }
