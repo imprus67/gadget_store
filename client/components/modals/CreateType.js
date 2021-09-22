@@ -5,7 +5,23 @@ import CreateModal from './CreateModal';
 const CreateType = ({active, setActive}) => {
     return (
         <CreateModal active={active} setActive={setActive}>
-            22222222222222222222222
+            
+        <div className={styles.Wrapper}>
+            <h2>Добавьте категорию</h2>
+            <form>
+                <input className={styles.Input} 
+                placeholder="Введите название категории">
+
+                </input>
+                <label></label>
+
+                <button className={styles.Add}>Добавить</button>
+                <button className={styles.Close}
+                onClick={() => setActive(false) }>Закрыть</button>
+
+            </form>
+        </div>
+
         </CreateModal>
     )
 }

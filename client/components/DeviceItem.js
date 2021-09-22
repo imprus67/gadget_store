@@ -5,7 +5,7 @@ import styles from './DeviceItem.module.css';
 import Link from 'next/link';
 
 const DeviceItem = (props) => {
-    console.log(props);
+    
     let price = String(props.device.price);
     if (price.length === 5) {
         price = price.slice(0, 2) + " " + price.slice(2);

@@ -1,7 +1,19 @@
 import AuthContext from '../context/MainContext';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function ContextWrapper({children}) {
+
+
+
+    useEffect (() => {
+
+      const accessToken = localStorage.getItem('token');
+
+      if (accessToken) {
+      setIsAuth(true);
+      }
+   
+    }, []);
 
     const [selectedBrand, setSelectedBrand] = useState();
     const [selectedType, setSelectedType] = useState();
@@ -37,7 +49,8 @@ function ContextWrapper({children}) {
     ]);
     
     return (
-        <AuthContext.Provider value={{isAuth, 
+        <AuthContext.Provider value={{
+        isAuth, 
         setIsAuth, 
         brands, 
         setBrands,

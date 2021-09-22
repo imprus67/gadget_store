@@ -1,42 +1,49 @@
-.Modal {
-  height: 100vh;
-  width: 100vw;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: 0.5s;
+.Wrapper {
+  width: 100%;
+  height: 300px;
+  margin: 20px auto;
+  text-align: center;
 }
 
-.ModalActive {
+.Wrapper form {
+  width: 100%;
   height: 100vh;
-  width: 100vw;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 1;
-  pointer-events: all;
-  transition: 0.5s;
 }
 
-.ModalContent {
-  padding: 20px;
+.Wrapper input {
+  width: 80%;
+  height: 60px;
+  margin-bottom: 50px;
+  font-size: 34px;
   border-radius: 10px;
-  background-color: white;
-  transform: scale(0.5);
-  transition: 0.5s all;
-  width: 50vw;
+}
+.Wrapper h2 {
+  font-size: 40px;
+  margin-bottom: 40px;
+}
+.Input {
+  width: 500px;
 }
 
-.ModalContentActive {
-  transform: scale(1);
+.Add {
+  width: 300px;
+  height: 80px;
+  font-size: 34px;
+  border-radius: 10px;
+  border: none;
+  background-color: #1c5c2d;
+  color: white;
+  cursor: pointer;
+  margin-right: 20px;
+}
+.Close {
+  width: 300px;
+  height: 80px;
+  font-size: 34px;
+  border-radius: 10px;
+  border: none;
+  background-color: #b32430;
+  color: white;
+  cursor: pointer;
+  margin-left: 20px;
 }

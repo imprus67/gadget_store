@@ -4,14 +4,18 @@ import SubHeader from './../../components/SubHeader';
 import CreateBrand from '../../components/modals/CreateBrand';
 import CreateType from '../../components/modals/CreateType';
 import CreateDevice from '../../components/modals/CreateDevice';
+import withAuthAdmin from '../../HOC/withAuthAdmin';
 
 const Admin = () => {
+
+
     const [isModalTypeVisible, setIsModalTypeVisible] = useState(false);
     const [isModalBrandVisible, setIsModalBrandVisible] = useState(false);
     const [isModalDeviceVisible, setIsModalDeviceVisible] = useState(false);
 
     return (
-        <>
+
+         <>
             <SubHeader />
             <div className={styles.MainWrapper}>
 
@@ -56,4 +60,5 @@ const Admin = () => {
     )
 }
 
-export default Admin;
+
+export default withAuthAdmin(Admin);

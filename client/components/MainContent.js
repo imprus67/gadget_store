@@ -10,7 +10,7 @@ const MainContent = () => {
         selectedBrand, 
         setSelectedBrand} = useContext(MainContext);
 
-    console.log(brands);
+   
 
     return (
         <div className={styles.MainContent}>

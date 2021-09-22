@@ -17,7 +17,7 @@ class UserController {
 
     async signup(req, res, next) {
 
-        const { email, password, role } = req.body;
+        const { email, password } = req.body;
 
         if (!validator.isEmail(email)) {
             return next(ApiError.badRequest('Указан некорректный формат почты (email)'))
@@ -27,8 +27,6 @@ class UserController {
             return next(ApiError.badRequest('Пароль должен быть не короче 8 символов'))
         }
 
-
-
         const candidate = await User.findOne({ where: { email } });
 
         if (candidate) {
@@ -36,10 +34,12 @@ class UserController {
         }
 
         const hashedPassword = await bcrypt.hash(password, 12);
-        const user = await User.create({ email, role, password: hashedPassword });
-        const order = await Order.create({ userId: user.id });
+        const user = await User.create({ email, role: 'USER', password: hashedPassword });
+        //const order = await Order.create({ userId: user.id });
         const token = generateJwt(user.id, user.email, user.role);
-        return res.json({ token });
+        return res.json({
+          message: 'Success',
+          token });
     }
 
     async login(req, res) {
@@ -51,7 +51,7 @@ class UserController {
         if (!user) {
             return next(ApiError.internal('Пользователь не найден'));
         }
-        
+
         let comparePassword = bcrypt.compareSync(password, user.password);
 
         if (!comparePassword) {

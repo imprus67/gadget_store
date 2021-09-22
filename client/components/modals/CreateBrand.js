@@ -5,7 +5,23 @@ import CreateModal from './CreateModal';
 const CreateBrand = ({active, setActive}) => {
     return (
         <CreateModal active={active} setActive={setActive}>
-            1111111111111111111111111
+
+            <div className={styles.Wrapper}>
+                <h2>Добавьте производителя</h2>
+                <form>
+                    <input className={styles.Input} 
+                    placeholder="Введите название категории">
+
+                    </input>
+                    <label></label>
+
+                    <button className={styles.Add}>Добавить</button>
+                    <button className={styles.Close}
+                    onClick={() => setActive(false) }>Закрыть</button>
+
+                </form>
+        </div>
+
         </CreateModal>
     )
 }
