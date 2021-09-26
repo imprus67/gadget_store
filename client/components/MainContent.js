@@ -3,14 +3,15 @@ import { useContext } from 'react';
 import styles from './MainContent.module.css';
 import MainContext from '../context/MainContext';
 import DeviceList from './DeviceList';
+import Pagination from './Pagination';
 
 const MainContent = () => {
 
     const {brands,  
         selectedBrand, 
-        setSelectedBrand} = useContext(MainContext);
-
-   
+        setSelectedBrand,
+        setPage,
+        setActive} = useContext(MainContext);
 
     return (
         <div className={styles.MainContent}>
@@ -21,7 +22,11 @@ const MainContent = () => {
                     className={brand.id === selectedBrand ? 
                         styles.BrandItemActive : 
                         styles.BrandItem}
-                    onClick={() => setSelectedBrand(brand.id)}>
+                    onClick={() => {
+                        setSelectedBrand(brand.id)
+                        setPage(1)
+                        setActive(1)
+                        }}>
                         {brand.name}
                     </div>
                 )
@@ -30,7 +35,7 @@ const MainContent = () => {
             <div className={styles.Devices}>
                 <DeviceList />    
             </div>
-            
+            <Pagination />
         </div>
     )
 }

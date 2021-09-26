@@ -12,8 +12,8 @@ class BrandController {
 
     async create(req, res) {
         const {name} = req.body;
-        const type = await Brand.create({name});
-        return res.json(type);
+        const brand = await Brand.create({name});
+        return res.json(brand);
     }
 
 }

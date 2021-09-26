@@ -7,21 +7,22 @@ import Link from 'next/link';
 const DeviceItem = (props) => {
     
     let price = String(props.device.price);
-    if (price.length === 5) {
+
+    if (price.length === 4) {
+        price = price.slice(0, 1) + " " + price.slice(1);
+    } else if (price.length === 5) {
         price = price.slice(0, 2) + " " + price.slice(2);
     } else if (price.length === 6) {
         price = price.slice(0, 3) + " " + price.slice(3);
-    } else {
-        return price;
-    }
+    } 
     
     return (
         <div className={styles.DeviceWrapper}>
 
             <Link href={process.env.NEXT_PUBLIC_INNER_URL + '/device/' + `${props.device.id}`}>
-                <Image src={props.device.img} width="150" height="150"/>
+                <img src={`http://localhost:5000/${props.device.img}`} width="150" height="150"/>
             </Link>
-                <div className={styles.BrandName}>Samsung...</div>
+                <div className={styles.BrandName}>Артикул: {props.device.id}</div>
                 <div className={styles.DeviceName}>
                     {props.device.name}
                 </div>
@@ -38,6 +39,5 @@ const DeviceItem = (props) => {
     )
 }
 
-// props.device.price.slice(0, 1) + " " + props.device.price.slice(1);
 
 export default DeviceItem;

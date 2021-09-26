@@ -1,36 +1,31 @@
-import React from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import SubHeader from './../../../components/SubHeader';
-import styles from './../../../components/DevicePage.module.css';
 import Image from 'next/image';
+import styles from './../../../components/DevicePage.module.css';
 import cartPic from './../../../public/Cart.png';
 
 
-const DevicePage = () => {
+const DevicePage = ({filteredDevice, loadedDeviceInfo}) => {
 
-    const device = {id: 6, name: "Honor H20", price: 10000, img: '/img1.jpg'}
+        // const [loading, setLoading] = useState(true);
+            
+    const device = filteredDevice[0];
+    console.log(loadedDeviceInfo)
+    const description = loadedDeviceInfo;
 
-    const description = [
-        {id: 1, title: "Оперативная память", description: "5 GB"},
-        {id: 2, title: "Дисплей", description: "5\""},
-        {id: 3, title: "Процессор", description: "Snap Dragon"},
-        {id: 4, title: "Камера", description: "12 Мп"},
-        {id: 5, title: "Аккумулятор", description: "3400 мA/час"},
-        {id: 6, title: "Оперативная система", description: "Android"}
-    ];
     let price = String(device.price);
 
     if (price.length === 5) {
         price = price.slice(0, 2) + " " + price.slice(2);
     } else if (price.length === 6) {
         price = price.slice(0, 3) + " " + price.slice(3);
-    } else {
-        return price;
-    }
-    
+    } else if (price.length === 4) {
+        price = price.slice(0, 1) + " " + price.slice(1);
+    } 
     
 
     return (
-        <>
+         <>
             <SubHeader />
             <div className={styles.MainWrapper}>
                 <div className={styles.DeviceWrapper}>
@@ -40,7 +35,10 @@ const DevicePage = () => {
                     </div>
 
                     <div className={styles.ImageWrapper}>
-                        <Image src={device.img} width={300} height={300}/>
+                        <img 
+                        src={`http://localhost:5000/${device.img}`} 
+                        width={300} 
+                        height={300}/>
                     </div>
 
 
@@ -73,6 +71,37 @@ const DevicePage = () => {
             </div>
         </>
     )
+}
+
+export const getStaticProps = async (context) => {
+
+    const pid = context.params.device;
+
+    const res = await fetch('http://localhost:5000/api/device');
+    let loadedDevice = await res.json();
+
+    const resInfo = await fetch(`http://localhost:5000/api/device/info/${pid}`);
+    let loadedDeviceInfo = await resInfo.json();
+
+    const device = loadedDevice.rows;
+
+    const filteredDevice = device.filter( obj => obj.id == pid );
+
+
+  return {
+    props: {
+      filteredDevice,
+      loadedDeviceInfo
+    }
+  }
+}
+
+export const getStaticPaths = async () => {
+
+    return {
+        paths: [], //indicates that no page needs be created at build time
+        fallback: 'blocking' //indicates the type of fallback
+    }
 }
 
 export default DevicePage;

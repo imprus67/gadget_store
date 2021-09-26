@@ -1,5 +1,6 @@
 import AuthContext from '../context/MainContext';
 import { useState, useEffect } from 'react';
+import { fetchTypes, fetchBrands, fetchDevices, fetchDevicesForPagination } from '../http/deviceAPI';
 
 function ContextWrapper({children}) {
 
@@ -12,44 +13,39 @@ function ContextWrapper({children}) {
       if (accessToken) {
       setIsAuth(true);
       }
-   
+
+    fetchTypes().then( data => setTypes(data.types));
+    fetchBrands().then( data => setBrands(data.brands));
+    // fetchDevices().then( data => {
+    //     setDevices(data)
+    // });
+
+    fetchDevicesForPagination(null, null, 1, 5).then(data => {
+        setDevices(data.rows) 
+        setTotalCount(data.count)
+    }
+    )
     }, []);
 
+    const [active, setActive] = useState(1);
+    const [page, setPage] = useState(1);
+    const [totalCount, setTotalCount] = useState(0);
+    const [limit, setLimit] = useState(3);
     const [selectedBrand, setSelectedBrand] = useState();
     const [selectedType, setSelectedType] = useState();
     const [isAuth, setIsAuth] = useState(false);
-    const [brands, setBrands] = useState([
-        {id: 1, name: "Samsung"},
-        {id: 2, name: "Xiaomi"},
-        {id: 3, name: "Honor"},
-        {id: 4, name: "Nikia"},
-        {id: 5, name: "Lenovo"},
-        {id: 6, name: "Samsung"},
-        {id: 7, name: "Xiaomi"},
-        {id: 8, name: "Honor"},
-        {id: 9, name: "Nokia"},
-        {id: 10, name: "Lenovo"},
-        
-        
-    ]);
-    const [types, setTypes] = useState([
-        {id: 1, name: "Смартфоны"},
-        {id: 2, name: "Планшеты"},
-        {id: 3, name: "Смарт часы"},
-        {id: 4, name: "Аксессуары"},
-        {id: 5, name: "Наушники"},
-    ]);
-    const [devices, setDevices] = useState([
-        {id: 1, name: "Samsung A10", price: 100000, img: '/img1.jpg'},
-        {id: 2, name: "Xiaomi Redmi Note 7", price: 10000, img: '/img1.jpg'},
-        {id: 3, name: "Honor Disbass", price: 10000, img: '/img1.jpg'},
-        {id: 4, name: "Samsung A10", price: 10000, img: '/img1.jpg'},
-        {id: 5, name: "Xiaomi Redmi Note 7", price: 10000, img: '/img1.jpg'},
-        {id: 6, name: "Honor Disbass", price: 10000, img: '/img1.jpg'}
-    ]);
+    const [brands, setBrands] = useState([]);
+    const [types, setTypes] = useState([]);
+    const [devices, setDevices] = useState([]);
     
     return (
         <AuthContext.Provider value={{
+        page,
+        setPage,
+        totalCount,
+        setTotalCount,
+        limit,
+        setLimit,
         isAuth, 
         setIsAuth, 
         brands, 
@@ -61,7 +57,9 @@ function ContextWrapper({children}) {
         selectedType,
         setSelectedType,
         devices,
-        setDevices
+        setDevices,
+        active, 
+        setActive
         }}>
             {children}
         </AuthContext.Provider>

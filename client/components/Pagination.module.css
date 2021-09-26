@@ -1,0 +1,30 @@
+.PaginationWrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: space-around;
+  justify-content: center;
+  align-items: center;
+  row-gap: 30px;
+  column-gap: 50px;
+  margin-top: 40px;
+}
+
+.PageElement {
+  cursor: pointer;
+  background: #1a3d73;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  color: white;
+}
+.PageElementActive {
+  background: #cb3435;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  color: white;
+}

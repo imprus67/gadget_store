@@ -1,6 +1,6 @@
 const uuid = require('uuid');
 const path = require('path');
-const {Device} = require('../models/models');
+const {Device, DeviceInfo} = require('../models/models');
 const ApiError = require('../error/ApiError');
 class DeviceController {
 
@@ -10,7 +10,7 @@ class DeviceController {
         limit = limit || 9
         let offset = page * limit - limit
         let devices;
-         
+
         if (!brandId && !typeId) {
             devices = await Device.findAndCountAll({limit, offset})
         }
@@ -30,17 +30,18 @@ class DeviceController {
     async create (req, res, next) {
         try {
 
-        const {name, price, brandId, typeId, info} = req.body;
+        let {name, price, brandId, typeId, info} = req.body;
 
-        if (!name || !pice || brandId || typeId || info) {
+        if (!name || !price || !brandId || !typeId || !info) {
             return next(ApiError('Введены не все данные!'));
         }
 
         const {img} = req.files;
-        
+
         if (!img) {
-            return next(ApiError('Добавьте изображение товара в формате jpg!'));
+            return next(ApiError(e.message, 'Добавьте изображение товара в формате jpg!'));
         }
+
         let fileName = uuid.v4() + '.jpg';
 
         img.mv(path.resolve(__dirname, '../', 'static', fileName));
@@ -73,6 +74,18 @@ class DeviceController {
             },
         )
         return res.json(device)
+    }
+
+    async getInfo (req, res, next) {
+
+      const {id} = req.params;
+
+      const deviceInfo = await DeviceInfo.findAll(
+          {
+              where: {deviceId: id}
+          },
+      )
+      return res.json(deviceInfo);
     }
 
 }

@@ -2,18 +2,14 @@ import React, { useState, useEffect, useContext } from 'react';
 import styles from './Sidebar.module.css';
 import MainContext from '../context/MainContext';
 import TypeItem from './TypeItem';
+import {fetchTypes} from './../http/deviceAPI';
 
 const Sidebar = () => {
 
-        const {types,  
+        const {types,
+        setTypes,  
         selectedType, 
         setSelectedType} = useContext(MainContext);
-
-    // useEffect(() => {
-    // axios.get(process.env.NEXT_PUBLIC_URL + '/api/type')
-    // .then(response => setTypes(() => response.data.types));
-
-    // }, []);
 
 
     return (

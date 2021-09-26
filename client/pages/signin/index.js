@@ -16,20 +16,22 @@ const Auth = () => {
 
         const login = async (e) => {
 
-            try {
+        try {
 
-        e.preventDefault();
-        
-        const response = await registration(email, password);
-        localStorage.setItem('token', response.data.token)
-        setPassword('');
-        setEmail('');
+            e.preventDefault();
+            
+            const response = await registration(email, password);
+            localStorage.setItem('token', response.data.token)
+            setPassword('');
+            setEmail('');
+            setIsAuth(true);
+            Router.push('/');
+
             } catch (e) {
-
+                console.log(e.response.data.message);
             }
 
-        setIsAuth(true);
-        Router.push('/');
+
     }
 
 

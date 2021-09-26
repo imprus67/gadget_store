@@ -22,12 +22,12 @@ const Auth = () => {
         
         setPassword('');
         setEmail('');
-        
-        } catch (e) {
-            console.log(e);
-        }
         setIsAuth(true);
-        Router.push('/');
+        Router.push('/');     
+        } catch (e) {
+            console.log(e.response.data.message);
+        }
+
 
     }
 

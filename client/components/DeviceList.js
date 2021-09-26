@@ -1,11 +1,13 @@
-import React, {useContext} from 'react'
+import React, {useContext, useEffect} from 'react'
 import DeviceItem from './DeviceItem';
 import MainContext from '../context/MainContext';
 import styles from './DeviceList.module.css';
 
 const DeviceList = () => {
 
-    const {devices} = useContext(MainContext);
+    const {devices, setDevices} = useContext(MainContext);
+  console.log(devices)
+
 
 
     return (

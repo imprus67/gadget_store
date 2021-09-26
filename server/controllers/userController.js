@@ -42,7 +42,7 @@ class UserController {
           token });
     }
 
-    async login(req, res) {
+    async login(req, res, next) {
 
         const { email, password } = req.body;
 
