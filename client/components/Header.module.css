@@ -49,6 +49,10 @@
   justify-content: center;
 }
 
+.cartHeader img {
+  cursor: pointer;
+}
+
 .signHeader {
   display: flex;
   align-content: center;
@@ -85,4 +89,15 @@
 .loginButton:hover {
   cursor: pointer;
   text-shadow: 2px -1px 4px;
+}
+
+.cartCount {
+  color: #fff;
+  align-self: self-end;
+  padding-left: 3px;
+  border: 1px solid white;
+  border-radius: 50px;
+  width: 15px;
+  height: 15px;
+  font-size: 12px;
 }

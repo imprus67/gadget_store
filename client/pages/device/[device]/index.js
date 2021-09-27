@@ -1,8 +1,9 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React from 'react';
 import SubHeader from './../../../components/SubHeader';
 import Image from 'next/image';
 import styles from './../../../components/DevicePage.module.css';
 import cartPic from './../../../public/Cart.png';
+import { priceModified } from '../../../utils/price';
 
 
 const DevicePage = ({filteredDevice, loadedDeviceInfo}) => {
@@ -10,19 +11,10 @@ const DevicePage = ({filteredDevice, loadedDeviceInfo}) => {
         // const [loading, setLoading] = useState(true);
             
     const device = filteredDevice[0];
-    console.log(loadedDeviceInfo)
+
     const description = loadedDeviceInfo;
 
-    let price = String(device.price);
-
-    if (price.length === 5) {
-        price = price.slice(0, 2) + " " + price.slice(2);
-    } else if (price.length === 6) {
-        price = price.slice(0, 3) + " " + price.slice(3);
-    } else if (price.length === 4) {
-        price = price.slice(0, 1) + " " + price.slice(1);
-    } 
-    
+    const price = priceModified(device.price);
 
     return (
          <>
@@ -40,6 +32,8 @@ const DevicePage = ({filteredDevice, loadedDeviceInfo}) => {
                         width={300} 
                         height={300}/>
                     </div>
+
+
 
 
 

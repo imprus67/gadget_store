@@ -6,26 +6,8 @@ function ContextWrapper({children}) {
 
 
 
-    useEffect (() => {
 
-      const accessToken = localStorage.getItem('token');
 
-      if (accessToken) {
-      setIsAuth(true);
-      }
-
-    fetchTypes().then( data => setTypes(data.types));
-    fetchBrands().then( data => setBrands(data.brands));
-    // fetchDevices().then( data => {
-    //     setDevices(data)
-    // });
-
-    fetchDevicesForPagination(null, null, 1, 5).then(data => {
-        setDevices(data.rows) 
-        setTotalCount(data.count)
-    }
-    )
-    }, []);
 
     const [active, setActive] = useState(1);
     const [page, setPage] = useState(1);
@@ -37,6 +19,73 @@ function ContextWrapper({children}) {
     const [brands, setBrands] = useState([]);
     const [types, setTypes] = useState([]);
     const [devices, setDevices] = useState([]);
+    const [cart, setCart] = useState(null);
+    const [wasPicked, setWasPicked] = useState(null);
+    const [infoArray, setInfoArray] = useState([{id : 1}]);
+
+    
+
+    useEffect (() => {
+
+      const accessToken = localStorage.getItem('token');
+
+      if (accessToken) {
+      setIsAuth(true);
+      }
+
+    fetchTypes().then( data => setTypes(data.types));
+    fetchBrands().then( data => setBrands(data.brands));
+
+    fetchDevicesForPagination(null, null, 1, 5).then(data => {
+        setDevices(data.rows) 
+        setTotalCount(data.count)
+    }
+    )
+    }, []);
+
+
+    useEffect(() => {
+
+       let productsInCart = localStorage.getItem('cart');
+
+       if(productsInCart) {
+           setCart(productsInCart)
+       }
+       
+
+    // JSON.parse(productsInCart).map(async (deviceInfos) => {
+
+
+    //   let pid = deviceInfos.id;
+
+      
+      
+
+    //   const resInfo = await fetch(`http://localhost:5000/api/device/info/${pid}`);
+
+    //   let loadedDevicesInfo = await resInfo.json();
+      
+    //     // console.log(loadedDevicesInfo)
+    //   setInfoArray( prevState => ([...prevState, [{'id': pid, 'item': loadedDevicesInfo}]]))
+
+      
+
+
+
+    //   })
+
+    }, []);
+
+    useEffect(() => {
+
+       let wasPickedButtons= localStorage.getItem('picked');
+
+       if(wasPickedButtons) {
+           setWasPicked(wasPickedButtons)
+       }
+
+    }, [wasPicked]);
+
     
     return (
         <AuthContext.Provider value={{
@@ -59,7 +108,12 @@ function ContextWrapper({children}) {
         devices,
         setDevices,
         active, 
-        setActive
+        setActive,
+        cart,
+        setCart,
+        wasPicked,
+        setWasPicked,
+        infoArray
         }}>
             {children}
         </AuthContext.Provider>

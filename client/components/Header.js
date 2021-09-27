@@ -10,12 +10,17 @@ import MainContext from '../context/MainContext';
 
 const Header = () => {
 
-    const {isAuth, setIsAuth} = useContext(MainContext);
+    const {isAuth, setIsAuth, cart} = useContext(MainContext);
+    
 
     const logOut = () => {
         setIsAuth(false);
         localStorage.removeItem('token');
     }
+
+    useEffect (() => {
+
+    }, []);
 
     if (!isAuth) {
 return (
@@ -50,6 +55,7 @@ return (
                 
                 <div className={styles.cartHeader}>
                     <Image src={cartPic} width="40" height="35"/>
+                    {/* <span className={styles.cartCount}>{cart.length}</span> */}
                 </div>
                 
                 <div className={styles.signHeader}>
@@ -97,7 +103,11 @@ return (
                 </div>
                 
                 <div className={styles.cartHeader}>
+                    <Link href="/order"> 
                     <Image src={cartPic} width="40" height="35"/>
+                    </Link>
+                    <span className={styles.cartCount}>{ cart && JSON.parse(cart).length}</span>
+                    
                 </div>
                 
                 <div className={styles.signHeader}>

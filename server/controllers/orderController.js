@@ -1,5 +1,7 @@
-const {Order} = require('../models/models')
+const {Order, User} = require('../models/models')
 const ApiError = require('../error/ApiError');
+const jwt_decode = require('jwt-decode');
+
 
 class OrderController {
 
@@ -10,10 +12,33 @@ class OrderController {
         })
     }
 
-    async create (req, res) {
-        const {name} = req.body;
-        const type = await Type.create({name});
-        return res.json(type);
+    async create (req, res, next) {
+
+        const request = req.body;
+
+
+
+        const tokenFromHeaders = req.headers.authorization;
+
+        const token = tokenFromHeaders.replace('Bearer ', '');
+
+        const userEmailFromToken = jwt_decode(token).email;
+
+        const user = await User.findOne({ where: { 'email': userEmailFromToken } });
+
+        if (!user) {
+            return next(ApiError.internal('Пользователь не найден'));
+          }
+
+
+
+
+
+        const userFromToken = jwt_decode(token).id;
+
+        const order = await Order.create({ userFromToken });
+
+        return res.json({"type": order});
     }
 
 }

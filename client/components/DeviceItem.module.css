@@ -9,6 +9,13 @@
   cursor: pointer;
 }
 
+.DeviceWrapper button:disabled {
+  cursor: initial;
+}
+.DeviceWrapper button:disabled img {
+  cursor: initial;
+}
+
 .DeviceName {
   text-align: center;
   padding-top: 10px;
@@ -42,6 +49,11 @@
   align-items: center;
 }
 
+.Cart:hover {
+  transform: scale(1.05);
+  transition: 0.2s;
+}
+
 .Cart img {
   margin-right: 10px;
 }
@@ -52,4 +64,23 @@
 
 .CartDiv {
   color: black;
+}
+
+.CartClicked {
+  transition: 0.5s;
+  color: black;
+  width: 150px;
+  height: 40px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 5px;
+  border: none;
+  background: #cb3435;
+  cursor: pointer;
+  margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
 }

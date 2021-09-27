@@ -30,6 +30,11 @@ export const fetchDevices = async () => {
     return response.data.rows;
 }
 
+export const createOrder = async (devices) => {
+    const response = await axiosCustom.post('/api/order', devices);
+    return response.data;
+}
+
 export const fetchDevicesForPagination = async (typeId, brandId, page, limit = 5) => {
     const response = await axiosCustom.get('/api/device', {params: {
         typeId,
