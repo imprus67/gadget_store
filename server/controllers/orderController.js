@@ -1,4 +1,4 @@
-const {Order, User} = require('../models/models')
+const {Basket, User, BasketDevice} = require('../models/models')
 const ApiError = require('../error/ApiError');
 const jwt_decode = require('jwt-decode');
 
@@ -18,6 +18,8 @@ class OrderController {
 
 
 
+        // console.log(request);
+
         const tokenFromHeaders = req.headers.authorization;
 
         const token = tokenFromHeaders.replace('Bearer ', '');
@@ -36,9 +38,13 @@ class OrderController {
 
         const userFromToken = jwt_decode(token).id;
 
-        const order = await Order.create({ userFromToken });
 
-        return res.json({"type": order});
+
+        const order = await Basket.create({ userId: userFromToken });
+
+        request.map(async (item) => await BasketDevice.create({ basketId: order.id, deviceId: item }));
+
+        return res.json({"type": 'order'});
     }
 
 }

@@ -1,12 +1,15 @@
 .MainWrapper {
   display: flex;
-  width: 600px;
+  width: 800px;
   margin: 50px auto 20px auto;
   flex-direction: row;
   flex-wrap: wrap;
   align-content: space-around;
-  justify-content: space-between;
+  -moz-box-pack: justify;
+  justify-content: space-around;
   margin-bottom: 40px;
+  row-gap: 30px;
+  align-items: flex-start;
 }
 
 .DeviceWrapper {

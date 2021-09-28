@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 import withAuth from './../../HOC/withAuth';
 import MainContext from './../../context/MainContext';
 import styles from './../../components/Order.module.css';
@@ -8,32 +9,80 @@ import { createOrder } from '../../http/deviceAPI';
 
 const Order = () => {
 
-      const { cart, wasPicked } = useContext(MainContext);
+      const { cart, setCart, setWasPicked, wasPicked } = useContext(MainContext);
 
       let totalSum =0;
 
       let cartParsed = JSON.parse(cart);
 
-      cartParsed.map((item) => totalSum += Number(item.price));
+      if (cartParsed != null) {
+        cartParsed.map((item) => totalSum += Number(item.price));
+      } else {
+        
+      }
 
-      console.log(totalSum);
+      const makeOrder = async () => {
 
-      const makeOrder = () => {
+        if (cartParsed) {
+
         let orderedDevices = [];
         cartParsed.map((item) => orderedDevices.push(item.id));
         
-        createOrder(orderedDevices).then(
-          console.log('good')
-        ).catch(e => console.log(e))
+        try {
+
+           await createOrder(orderedDevices);
+           console.log('good');
+
+           localStorage.removeItem('cart');
+           localStorage.removeItem('picked');
+
+           setCart(null);
+           setWasPicked(null);
+
+        } catch (e) {
+          console.log(e)
+        }
+
+        } else {
+          console.log('Cart is empty')
+        }
+
+
+
+      }
+
+      const deleteDevice = (deletingDevice) => {
+
+        let lcCart = localStorage.getItem('cart');
+
+        const newCartParsed = cartParsed.filter(item => item.id !== deletingDevice);
+        const newWasPicked = JSON.parse(wasPicked);
+        const newWasPickedPicked = newWasPicked.filter (item => item.id !== deletingDevice);
+        localStorage.setItem('cart', JSON.stringify(newCartParsed));
+        localStorage.setItem('picked', JSON.stringify(newWasPickedPicked));
+        setCart(JSON.stringify(newCartParsed));
+        setWasPicked(JSON.stringify(newWasPickedPicked))
+
       }
 
       return (
         <>
+          
           <SubHeader/>
           <h2 className={styles.Header}>Оформление заказа</h2>
+          
           <div className={styles.Wrapper}>
-            {cartParsed.map((product) => {
-              return <div className={styles.WrapperItem}>
+            {cartParsed && cartParsed.map((product) => {
+              return <motion.div 
+                      initial= {{
+                       y: -1000,
+                      }}
+                      animate= {{
+                        y: 0
+                      }}
+                      exit={{ y: -1000 }}
+                      className={styles.WrapperItem}
+                       key={product.id}>
                     
                 
                     <div className={styles.ImageWrapper}>
@@ -51,20 +100,27 @@ const Order = () => {
                     <div className={styles.PriceWrapper}>
                         <h3>{priceModified(product.price)} ₽</h3>
                     </div>
+                    <button 
+                    onClick={() => deleteDevice(product.id)}
+                    className={styles.DeleteButton}>+</button>
 
-                </div>
+                </motion.div>
             })}
 
+            
             <div className={styles.UnderlineWrapper}>
+              {cart.length < 3 && <h2>Ваша корзина пуста!</h2>}
                   <div className={styles.SumWrapper}>
                     <div className={styles.SumText}>Итого к оплате: </div>
                     <div className={styles.SumNumber}>{priceModified(totalSum)} ₽</div>
                   </div>
               <button
-              onClick ={makeOrder} 
+              onClick ={makeOrder}
+              disabled={!(cart.length < 3)} 
               className={styles.OrderButton}>Оформить заказ</button>
             </div>
           </div>
+          
         </>
     )
 }

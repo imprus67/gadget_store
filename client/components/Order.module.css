@@ -113,3 +113,25 @@
   transform: scale(1.05);
   transition: 0.4s;
 }
+
+.OrderButton:hover .OrderButton:disabled {
+  cursor: initial;
+}
+
+.DeleteButton {
+  border-radius: 50px;
+  width: 30px;
+  height: 30px;
+  font-size: 30px;
+  line-height: 22px;
+  color: white;
+  background-color: rgb(187, 50, 50);
+  transform: rotate(45deg);
+  cursor: pointer;
+  border: none;
+}
+
+.DeleteButton:hover {
+  transition: 0.5s;
+  transform: rotate(135deg);
+}

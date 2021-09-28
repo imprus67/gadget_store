@@ -1,4 +1,31 @@
 .footer {
   background-color: #363636;
-  height: 50px;
+  color: white;
+}
+
+.wrapperFooter {
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.wrapperFooter ul {
+  display: flex;
+  list-style: none;
+  font-size: 18px;
+  margin: 10px 0;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 15px 0 15px 10px;
+  column-gap: 40px;
+}
+
+.Date {
+  text-align: center;
+  margin-bottom: 30px;
+  height: 40px;
 }

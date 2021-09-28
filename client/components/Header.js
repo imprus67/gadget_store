@@ -111,6 +111,10 @@ return (
                 </div>
                 
                 <div className={styles.signHeader}>
+                    <Link href="/admin">
+                    <button className={styles.signInButton}>Админ панель</button>
+                    </Link>
+
                     <Link href="/">
                     <button onClick={logOut} className={styles.signInButton}>Выйти</button>
                     </Link>
