@@ -8,3 +8,9 @@
   align-content: stretch;
   justify-content: flex-start;
 }
+
+@media (max-width: 778px) {
+  .DeviceListWrapper {
+    justify-content: space-evenly;
+  }
+}

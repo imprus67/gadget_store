@@ -23,7 +23,9 @@ function ContextWrapper({children}) {
     const [wasPicked, setWasPicked] = useState(null);
     const [infoArray, setInfoArray] = useState([{id : 1}]);
 
-    
+    function toggleMenuMode() {
+    toggleMenu(!isMenuOpen);
+  }
 
     useEffect (() => {
 

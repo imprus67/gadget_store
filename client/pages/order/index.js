@@ -12,13 +12,17 @@ const Order = () => {
       const { cart, setCart, setWasPicked, wasPicked } = useContext(MainContext);
 
       let totalSum =0;
-
+      let emptyCart;
       let cartParsed = JSON.parse(cart);
 
       if (cartParsed != null) {
         cartParsed.map((item) => totalSum += Number(item.price));
+      } 
+
+      if (cart == null || cart.length < 3) {
+        emptyCart = true;
       } else {
-        
+        emptyCart = false
       }
 
       const makeOrder = async () => {
@@ -64,7 +68,6 @@ const Order = () => {
         setWasPicked(JSON.stringify(newWasPickedPicked))
 
       }
-
       return (
         <>
           
@@ -109,14 +112,14 @@ const Order = () => {
 
             
             <div className={styles.UnderlineWrapper}>
-              {cart.length < 3 && <h2>Ваша корзина пуста!</h2>}
+              { emptyCart && <h2>Ваша корзина пуста!</h2>}
                   <div className={styles.SumWrapper}>
                     <div className={styles.SumText}>Итого к оплате: </div>
                     <div className={styles.SumNumber}>{priceModified(totalSum)} ₽</div>
                   </div>
               <button
               onClick ={makeOrder}
-              disabled={!(cart.length < 3)} 
+              disabled={emptyCart} 
               className={styles.OrderButton}>Оформить заказ</button>
             </div>
           </div>

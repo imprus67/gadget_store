@@ -33,3 +33,9 @@
 .sidebarList li:last-child {
   border-bottom: none;
 }
+
+@media (max-width: 778px) {
+  .sidebarWrapper {
+    display: none;
+  }
+}

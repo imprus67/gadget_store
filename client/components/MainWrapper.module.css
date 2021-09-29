@@ -6,3 +6,9 @@
   min-height: 100vh;
   margin-bottom: 40px;
 }
+
+@media (max-width: 778px) {
+  .MainWrapper {
+    display: flex;
+  }
+}
